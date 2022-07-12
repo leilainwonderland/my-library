@@ -16,4 +16,5 @@ jobs:
         with:
           node-version: 18
       - run: node -v
-      - run: echo ${{github.actor}}
+      - run: echo${{github.actor}}
+      
