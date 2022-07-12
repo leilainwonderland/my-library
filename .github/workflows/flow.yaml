@@ -2,6 +2,9 @@ name: Tests CI/CD
 
 on: ["push"]
 
+env:
+  DATABASE_NAME: 'test'
+
 jobs:
   dummy-job:
     name: "my job"
@@ -16,4 +19,5 @@ jobs:
         with:
           node-version: 18
       - run: node -v
-      - run: echo ${{github.actor}}
+      - run: echo ${{github.actor}} ${{github.event_name}}
+      - run: node dummy.js
