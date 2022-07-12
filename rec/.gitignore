@@ -1,0 +1,7 @@
+# on ignore les node modules car ils font la masse du soleil en poids
+node_modules
+# on ignore le dossier coverage généré par jest
+coverage
+
+# pour MACOS
+.DS_Store
