@@ -3,23 +3,27 @@ name: Tests CI/CD
 on: ["push"]
 
 env:
-  DATABASE_NAME: 'test'
+  DATABASE_NAME: "test"
 
 jobs:
   dummy-job:
     name: "my job"
     runs-on:  ubuntu-latest
     steps:
-      # - run: ls -la
+      - run: ls -la
       # on récupère le contenu du dépôt
       - uses: actions/checkout@v3
       - run: ls -la
-      # - name: "Installation de node"
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 18
-      # - run: node -v
-      - run: echo ${{github.actor}} ${{github.event_name}}
+      - name: "Installation de node"
+        uses: actions/setup-node@v3
+        with:
+          # on dit d'installer la version 18
+          node-version: 18
+      - run: node -v
+      # ${{ ... }} utilise une variable pour le contexte
+      - run: echo ${{ github.actor }}  ${{ github.event_name }}
+      - run: printenv
+      # Les variables d'env sont passées au script (normalement)
       - run: node dummy.js
-        env:
-         DATABASE_NAME: 'override du database_name'
+        env: 
+          DATABASE_NAME: 'override du database name'
