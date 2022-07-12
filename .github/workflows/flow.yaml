@@ -14,23 +14,9 @@
       name: "my job"
       runs-on:  ${{ matrix.os }}
       steps:
-        - run: ls -la
-        # on fait ls -la seulement si l'on est sous un os linux ou macos
-          if: ${{ runner.os == 'linux' || runner.os == 'macos' }}
-        - run: dir
-        # On fait dir seulement sur windows
-          if: ${{ runner.os == 'windows' }}
-        # on récupère le contenu du dépôt
         - uses: actions/checkout@v3
         - name: "Installation de node ${{ matrix.version }}x"
           uses: actions/setup-node@v3
           with:
-            # on dit d'installer la version 
             node-version: ${{ matrix.version }}
         - run: node -v
-        # ${{ ... }} utilise une variable pour le contexte
-        - run: echo ${{ github.actor }}  ${{ github.event_name }}
-        # Les variables d'env sont passées au script (normalement)
-        - run: node dummy.js
-          env: 
-            DATABASE_NAME: 'override du database name'
