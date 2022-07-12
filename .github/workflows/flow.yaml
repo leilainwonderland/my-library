@@ -1,0 +1,10 @@
+name: tests CI/CD
+
+on: ["push"]
+
+jobs:
+ dummy-job:
+  name: "my job"
+  runs-on: ubuntu-latest
+  steps: 
+   -run: echo "coucou"
